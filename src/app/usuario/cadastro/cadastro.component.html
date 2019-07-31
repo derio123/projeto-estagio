@@ -1,0 +1,14 @@
+<h1>Cadastro de novo usuário</h1>
+
+<form [formGroup]="formularioCadastro" (ngSubmit)="cadastrar()">
+    <label for="nome">Nome:</label>
+    <input id="nome" type="text" placeholder="nome" formControlName="nome">
+
+    <label for="email">E-mail:</label>
+    <input id="email" type="text" placeholder="e-mail" formControlName="email">
+
+    <label for="telefone">Telefone:</label>
+    <input id="telefone" type="text" placeholder="telefone" formControlName="telefone">
+
+    <button type="submit">Cadastrar novo usuário</button>
+</form>

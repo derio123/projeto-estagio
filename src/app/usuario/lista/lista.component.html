@@ -1,0 +1,29 @@
+<nav class="navbar">
+    <h3>Buscar</h3>
+    <input class="form-control" type="text" name="search" [(ngModel)]="filter">
+</nav>
+
+
+<div>
+
+    <h1>Lista de cadastrados</h1>
+    <table>
+        <tr>
+            <th>Nome</th>
+            <th>E-mail</th>
+            <th>Telefone</th>
+        </tr>
+        <tr *ngFor="let pessoa of lista | filter:filter; let i = index">
+            <td>{{ pessoa.nome }}</td>
+            <td>{{ pessoa.email }}</td>
+            <td>{{ pessoa.telefone }}</td>
+            <td><button (click)="editar(pessoa)">Editar</button>&nbsp;<button (click)="excluir(pessoa)">Excluir</button></td>
+        </tr>
+    </table>
+
+</div>
+
+
+<a routerLink="/cadastro">
+    <button>Cadastrar novo usuário</button>
+</a>
