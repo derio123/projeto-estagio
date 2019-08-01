@@ -10,8 +10,9 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [ // lazy Load
-  { path: 'cadastar', component: CadastroComponent },
+  { path: 'cadastrar', component: CadastroComponent },
   { path: 'listar', component: ListaComponent },
+  // { path: 'editar', component: EditarComponent },
   { path: 'editar/:id', component: EditarComponent },
   { path: '', component: ListaComponent }
 ];

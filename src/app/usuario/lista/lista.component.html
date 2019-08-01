@@ -9,21 +9,23 @@
     <h1>Lista de cadastrados</h1>
     <table>
         <tr>
+            <th>ID</th>
             <th>Nome</th>
             <th>E-mail</th>
             <th>Telefone</th>
         </tr>
         <tr *ngFor="let pessoa of lista | filter:filter; let i = index">
+            <td>{{ pessoa.id }}</td>
             <td>{{ pessoa.nome }}</td>
             <td>{{ pessoa.email }}</td>
             <td>{{ pessoa.telefone }}</td>
-            <td><button (click)="editar(pessoa)">Editar</button>&nbsp;<button (click)="excluir(pessoa)">Excluir</button></td>
+            <td><button (click)="editar(pessoa.id)">Editar</button>&nbsp;<button (click)="excluir(pessoa)">Excluir</button></td>
         </tr>
     </table>
 
 </div>
 
 
-<a routerLink="/cadastro">
-    <button>Cadastrar novo usuário</button>
+<a>
+    <button (click)="cadastrar()">Cadastrar novo usuário</button>
 </a>

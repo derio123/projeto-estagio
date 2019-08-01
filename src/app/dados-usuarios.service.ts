@@ -9,16 +9,47 @@ export class DadosUsuariosService {
 
 
   getUsuarios() {
-    let usuarios = JSON.parse(localStorage.getItem("Usuários cadastrados"));
-    return usuarios;
+    let usuarios = JSON.parse(localStorage.getItem("usuario"));
+    if(!!usuarios){
+      return usuarios;
+    }
+    return [];
+    
   }
 
   cadastraUsuario(formularioCadastro) {
     this.usuariosCadastrados = this.getUsuarios();
-    this.usuariosCadastrados.push(formularioCadastro.value);
+    let id = 1;
+    if(this.usuariosCadastrados.length > 0){
+      this.usuariosCadastrados.forEach(
+        (dados) => {
+          id = dados.id + 1;
+        }
+        );
+    }
+    formularioCadastro.id = id;
+    this.usuariosCadastrados.push(formularioCadastro);
     //excluir isso depois:
-    console.log(this.usuariosCadastrados);
-    window.localStorage.setItem("Usuários cadastrados", JSON.stringify(this.usuariosCadastrados));
+    window.localStorage.setItem("usuario", JSON.stringify(this.usuariosCadastrados));
+  }
+
+  alterarUsuario(form) {
+    let usuarios = this.getUsuarios();
+    console.log(usuarios);
+    usuarios.forEach(
+      (dados) => {
+        if(dados.id-1 == form.value.id-1) {
+          console.log("lalala");
+          console.log(usuarios[dados.id-1].nome, form.value.nome);
+          usuarios[dados.id-1].nome = form.value.nome;
+          usuarios[dados.id-1].email = form.value.email;
+          usuarios[dados.id-1].telefone = form.value.telefone;
+        }
+      }
+      );
+    //this.usuariosCadastrados.push(formularioCadastro);
+    //excluir isso depois:
+    window.localStorage.setItem("usuario", JSON.stringify(usuarios));
   }
 
   constructor() { }

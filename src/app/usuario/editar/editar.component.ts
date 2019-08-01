@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { FormGroup, FormControl } from '@angular/forms';
+import { Pessoa } from '../pessoa';
+import { DadosUsuariosService } from 'src/app/dados-usuarios.service';
 
 @Component({
   selector: 'app-editar',
@@ -8,12 +11,38 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class EditarComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute) { }
+  formularioCadastro = new FormGroup({
+    id: new FormControl(''),
+    nome: new FormControl(''),
+    email: new FormControl(''),
+    telefone: new FormControl('')
+  });
+
+  lista = this.usuariosService.getUsuarios();
+
+  constructor(private usuariosService: DadosUsuariosService, private route: ActivatedRoute, private router: Router) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-       console.log(params['id']);
+      const id = Number(params['id']);
+       this.lista.forEach(element => {
+         if(element['id'] === id){
+          this.formularioCadastro.get('id').setValue(element.id);
+          this.formularioCadastro.get('nome').setValue(element.nome);
+          this.formularioCadastro.get('email').setValue(element.email);
+          this.formularioCadastro.get('telefone').setValue(element.telefone);
+         }
+       });
     });
   }
+
+  
+
+  editar(form) {
+    this.usuariosService.alterarUsuario(form);
+    this.router.navigate(['listar']);
+  }
+
+  
 
 }
