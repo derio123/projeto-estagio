@@ -2,10 +2,10 @@ import { browser, by, element } from 'protractor';
 
 export class AppPage {
   navigateTo() {
-    return browser.get('/');
+    return browser.get('/cadastrar');
   }
 
   getParagraphText() {
-    return element(by.css('app-root h1')).getText();
+    return element(by.tagName('h1')).getText();
   }
 }

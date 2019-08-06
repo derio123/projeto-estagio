@@ -1,8 +1,7 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
+import { Component, OnInit, Output } from '@angular/core';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { DadosUsuariosService } from '../../dados-usuarios.service';
 import { Router } from '@angular/router';
-import { formControlBinding } from '@angular/forms/src/directives/reactive_directives/form_control_directive';
 
 @Component({
   selector: 'app-cadastro',
@@ -19,6 +18,8 @@ export class CadastroComponent implements OnInit {
     email: new FormControl(''),
     telefone: new FormControl('')
   });
+
+  get name() { return this.formularioCadastro.get('nome'); }
   
   constructor(private usuariosService: DadosUsuariosService, private router: Router) { 
    }
@@ -26,7 +27,7 @@ export class CadastroComponent implements OnInit {
   ngOnInit() {
   }
 
-  // insere os dados do formulario na array usuariosCadastrados e joga no localStorage
+  // chama o serviço pra cadastrar, informa o usuário e navega de volta para o componente 'listar'
   cadastrar() {
     this.usuariosService.cadastraUsuario(this.formularioCadastro.value);
     window.alert("Usuário cadastrado com sucesso!");
