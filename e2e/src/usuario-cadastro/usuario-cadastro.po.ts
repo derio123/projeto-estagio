@@ -1,12 +1,10 @@
-// ARQUIVO DE TESTE
-
 import { browser, by, element } from 'protractor';
 
 
 export class CadastroPage {
     
     navegarParaCadastro() {
-        return browser.get('/#/editar/id');
+        return browser.get('/#/cadastrar');
     }
     
     obterTextoPaginaCadastro() {
@@ -17,11 +15,15 @@ export class CadastroPage {
     campoEmail = element(by.id('email'));
     campoTelefone = element(by.id('telefone'));
 
+    // campoNome = element(by.id('nome'));
+    // campoEmail = element(by.id('email'));
+    // campoTelefone = element(by.id('telefone'));
+
     botaoSalvar = element(by.buttonText('Cadastrar novo usuário'));
     
     // verifica se categoria foi cadastrada
-    mensagemSucesso() {
+    /*mensagemSucesso() {
         var alertaSucesso = element(by.id('alerta-sucesso'));
         return alertaSucesso;
-    }
+    }*/
 }

@@ -1,6 +1,6 @@
 <nav class="navbar">
     <h3>Buscar</h3>
-    <input class="form-control" type="text" name="search" [(ngModel)]="filter">
+    <input id="busca" class="form-control" type="text" name="search" [(ngModel)]="filter">
 </nav>
 
 
@@ -15,10 +15,10 @@
             <th>Telefone</th>
         </tr>
         <tr *ngFor="let pessoa of lista | filter:filter; let i = index">
-            <td>{{ pessoa.id }}</td>
-            <td>{{ pessoa.nome }}</td>
-            <td>{{ pessoa.email }}</td>
-            <td>{{ pessoa.telefone }}</td>
+            <td id="id">{{ pessoa.id }}</td>
+            <td id="nome">{{ pessoa.nome }}</td>
+            <td id="email">{{ pessoa.email }}</td>
+            <td id="telefone">{{ pessoa.telefone }}</td>
             <td><button (click)="editar(pessoa.id)">Editar</button>&nbsp;<button (click)="excluir(pessoa)">Excluir</button></td>
         </tr>
     </table>

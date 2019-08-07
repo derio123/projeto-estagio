@@ -30,7 +30,7 @@ export class CadastroComponent implements OnInit {
   // chama o serviço pra cadastrar, informa o usuário e navega de volta para o componente 'listar'
   cadastrar() {
     this.usuariosService.cadastraUsuario(this.formularioCadastro.value);
-    window.alert("Usuário cadastrado com sucesso!");
+    //window.alert("Usuário cadastrado com sucesso!");
     this.router.navigate(['listar']);
   }
 
